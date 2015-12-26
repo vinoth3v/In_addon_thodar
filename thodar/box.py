@@ -46,13 +46,13 @@ class ThodarBoxThodarList(In.boxer.BoxLazy):
 					
 					grid = self.add('TextDiv', {
 						'css' : ['i-grid i-grid-divider'],
-						'weight' : 1,
+						'weight' : 5,
 					})
 					
-					self.add('Hr', {
-						'css' : ['i-grid-divider'],
-						'weight' : 2,
-					})
+					#self.add('Hr', {
+						#'css' : ['i-grid-divider'],
+						#'weight' : 2,
+					#})
 					
 					l = grid.add('TextDiv', {
 						'css' : ['i-width-1-3 i-text-center'],
@@ -207,7 +207,7 @@ class ThodarBoxThodarList(In.boxer.BoxLazy):
 						['status', '>', 0], 
 					],
 					#'limit' : self.limit,
-					'order' : 'weight',
+					'order' : ['weight', 'entity_id'],
 				}).execute()
 
 				if cursor.rowcount > 0:
@@ -215,9 +215,16 @@ class ThodarBoxThodarList(In.boxer.BoxLazy):
 					list_added = True
 
 					ul = self.add('Ul', {
-						'css' : ['i-nav i-nav-side'],
-						'weight' : 5,
+						'css' : ['i-nav i-nav-side i-margin-bottom'],
+						'weight' : 1,
 					})
+					
+					if nav_added:
+					
+						self.add('Hr', {
+							'css' : ['i-grid-divider'],
+							'weight' : 2,
+						})
 					
 					added = 1
 					
